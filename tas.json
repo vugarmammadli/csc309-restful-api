@@ -1,0 +1,23 @@
+{
+    "tas": [ 
+        {
+            "stunum": "111222333",
+            "givenname": "Alan",
+            "familyname": "Perlis",
+            "status": "PhD",
+            "year": "3",
+            "courses": [
+                {
+                    "code": "CSC108",
+                    "rank": "1",
+                    "experience": "3"
+                },
+                {
+                    "code": "CSC236",
+                    "rank": "3",
+                    "experience": "0"
+                }
+            ]
+        }
+    ]
+}
