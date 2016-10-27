@@ -28,7 +28,7 @@ Your RESTful API should be able to respond to the following requests with releva
 
 #### Individual Applicants (20%)
 
- - `GET /applicant?fname=fname`
+ - `GET /applicants?fname=fname`
 
     Get the information about an applicant with a particular Family Name.  The view will display all of the information about the applicant, including the list of courses applied for, and the applicants' rankings and experience for the courses.
 
