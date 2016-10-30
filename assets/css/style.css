@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#applicants {
+    width: 90%;
+    text-align: left;
+    border: 1px solid #c0ceff;
+    border-collapse: collapse;
+}
+#applicants th {
+    font-size: 14px;
+    font-weight: 700;
+    color: #039;
+    padding: 12px 15px;
+}
+#applicants td {
+    font-size: 12px;
+    font-weight: 400;
+    color: #669;
+    border-top: 1px solid #e8edff;
+    padding: 10px 15px;
+}
+#applicants tr:hover td {
+    background-color: #eff2ff;
+}
