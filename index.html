@@ -12,14 +12,29 @@
 
 <body>
 
-<table id="applicants">
-    <tr>
-        <th>Student #</th>
-        <th>Given name:</th>
-        <th>Family name:</th>
-        <th>Status:</th>
-        <th>Year:</th>
-    </tr>
-</table>
+<div id="container">
+    <div id="filter">
+        Choose specific status to filter applicants: 
+        <select>
+            <option value="all">All</option>
+            <option value="Undergrad">Undergrad</option>
+            <option value="MSc">MSc</option>
+            <option value="PhD">PhD</option>
+            <option value="MScAC">MScAC</option>
+            <option value="MEng">MEng</option>
+        </select>
+    </div>
+
+    <table id="applicants">
+        <tr>
+            <th>Student #</th>
+            <th>Given name:</th>
+            <th>Family name:</th>
+            <th>Status:</th>
+            <th>Year:</th>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>

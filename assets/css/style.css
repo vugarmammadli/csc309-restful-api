@@ -4,11 +4,18 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+#container{
+    width: 100%;
+    text-align: center;
+}
+
 #applicants {
     width: 90%;
     text-align: left;
     border: 1px solid #c0ceff;
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
 }
 #applicants th {
     font-size: 14px;
@@ -25,4 +32,26 @@ body{
 }
 #applicants tr:hover td {
     background-color: #eff2ff;
+}
+
+#filter{
+    text-align: center;
+    font-size: 14px;
+    color: #039;
+    border: 1px solid #c0ceff;
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: inline-block;
+}
+
+#filter select{
+    width: 30%;
+    margin-left: 40px;
+    border: 1px solid #e8edff;
+    cursor: pointer;
+}
+
+#filter select:focus{
+    outline: none;
 }

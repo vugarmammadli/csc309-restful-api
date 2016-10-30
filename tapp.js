@@ -24,11 +24,11 @@ app.get('/', function(req, res) {
     res.sendfile('index.html');
 });
 
-app.get('/applicants', routes.getAllApplicants);
+app.get('/applicants', routes.getApplicants);
     
-app.get('/applicants/:status', routes.getByStatus);
-
-app.get('/applicants/:fname', routes.getByFamilyName);
+//app.get('/applicants/:status', routes.getByStatus);
+//
+//app.get('/applicants/:fname', routes.getByFamilyName);
 
 app.post('/applicants', routes.addNewApplicant);
 

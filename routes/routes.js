@@ -8,19 +8,29 @@ fs.readFile('tas.json', 'utf-8', function(err, data) {
 });
 
 
-exports.getAllApplicants = function(req, res) {
-    res.send(JSON.stringify(tasObj));
-}
-
-exports.getByStatus = function(req, res) {
+exports.getApplicants = function(req, res) {
     var statusOfApplicant = req.query.status;
-    res.send(JSON.stringify(tasObj.tas[statusOfApplicant]));
+    var resultObj = {};
+    
+    if(statusOfApplicant){
+        var resultArr = [];
+        for(var i = 0; i < tasObj.tas.length; i++){
+            if(tasObj.tas[i].status == statusOfApplicant){
+                resultArr.push(tasObj.tas[i]);
+            }
+        }
+        resultObj.tas = resultArr;
+    }else{
+        resultObj = tasObj;
+    }
+    
+    res.send(JSON.stringify(resultObj));
 }
 
-exports.getByFamilyName = function(req, res) {
-    var familyName = req.query.fname;
-    res.send(JSON.stringify(tasObj.tas[familyname]));
-}
+//exports.getByFamilyName = function(req, res) {
+//    var familyName = req.query.fname;
+//    res.send(JSON.stringify(tasObj.tas[familyname]));
+//}
 
 exports.addNewApplicant = function(req, res) {
     var newApplicant = req.body;
