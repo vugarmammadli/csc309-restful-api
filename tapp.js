@@ -27,14 +27,14 @@ app.get('/', function(req, res) {
 app.get('/applicants', routes.getApplicants);
     
 //app.get('/applicants/:status', routes.getByStatus);
-//
-//app.get('/applicants/:fname', routes.getByFamilyName);
+
+//app.get('/applicants?fname=:fname', routes.getByFamilyName);
 
 app.post('/applicants', routes.addNewApplicant);
 
-app.delete('/remove/:fname', routes.removeByFamilyName);
+app.delete('/applicants', routes.removeByFamilyName);
 
-app.delete('/remove/:stunum', routes.removeByStudentNum);
+//app.delete('/remove/:stunum', routes.removeByStudentNum);
 
 
 // start the server

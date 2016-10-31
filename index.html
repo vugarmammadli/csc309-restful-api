@@ -24,16 +24,59 @@
             <option value="MEng">MEng</option>
         </select>
     </div>
+    
+    <div id="delete_fname">
+        Remove applicant by family name:
+        <br />
+        <input type="text" name="familyname">
+        <br />
+        <input id="rm_fname" type="submit" value="Remove">
+    </div>
+    
+     <div id="delete_stunum">
+        Remove applicant by student number: 
+        <input type="text" name="stunum">
+        <br />
+        <input id="rm_stunum" type="submit" value="Remove">
+    </div>
 
     <table id="applicants">
-        <tr>
-            <th>Student #</th>
-            <th>Given name:</th>
-            <th>Family name:</th>
-            <th>Status:</th>
-            <th>Year:</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Student #</th>
+                <th>Given name:</th>
+                <th>Family name:</th>
+                <th>Status:</th>
+                <th>Year:</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5"><input type="submit" id="add_applicant" value="Add new applicant"></td>
+            </tr>
+        </tfoot>
     </table>
+    
+<!--
+    <form id="add" method="post">
+       <table id="applicant_form">
+            <tr>
+                <td>Student Number: </td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+-->
+    
+    <div id="search">
+        Get the information about an applicant with a particular family name: 
+        <input type="text" name="familyname">
+        <br />
+        <input type="submit" id="search_button" value="Search">
+        <input type="submit" id="clear_button" value="Clear result">
+    </div>
 </div>
 
 </body>

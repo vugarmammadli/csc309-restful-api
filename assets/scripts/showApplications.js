@@ -1,10 +1,11 @@
 function getAllAplications(){
+    $("#applicants > tbody").empty();
     //returns all applicants at the beginning
     getApplicationAjaxCall("");
     
     //changes table when user select status
     $('#filter select').on('change', function() {
-        $("#applicants").find("tr:gt(0)").remove();
+        $("#applicants > tbody").empty();
         let status = $(this).find(":selected").val();
         //removes query to get all applicants
         if(status == "all")
@@ -19,7 +20,7 @@ function getApplicationAjaxCall(status){
         url: "/applicants?status=" + status,
         type: "GET",
         success: function(data){
-            let parent = $('#applicants');
+            let parent = $('#applicants > tbody');
             let applicants = JSON.parse(data);
             let applicantsArray = applicants.tas;
             applicantsArray.sort(sortByFamilyName);
@@ -49,6 +50,48 @@ function sortByFamilyName(firstTa, secondTa){
         return 0
 }
 
+function getApplicantByFamilyName(){
+//    $('#search_button').click(function(){
+//        $.get('applicants?fname=' + $(this).val(), function (data) {
+//            console.log("sadas");
+//            console.log(data);
+//        });
+//    });
+}
+
+function removeApplicantByFamilyName(){
+    $("#rm_fname").click(function (e) {
+        e.preventDefault();
+        let familyName = $('#delete_fname input[type=text]').val();
+        $.ajax({
+            url: '/applicants/?fname=' + familyName,
+            type: 'DELETE',
+            success: function(result) {
+                location.reload(true);
+            }
+        });
+
+    });
+}
+
+function removeApplicantByStudentNum(){
+    $("#rm_stunum").click(function (e) {
+        e.preventDefault();
+        let stdNum = $('#delete_stunum input[type=text]').val();
+        $.ajax({
+            url: '/applicants/?stunum=' + stdNum,
+            type: 'DELETE',
+            success: function(result) {
+                location.reload(true);
+            }
+        });
+
+    });
+}
+
 $(document).ready(function() {
     getAllAplications();
+    getApplicantByFamilyName();
+    removeApplicantByFamilyName();
+    removeApplicantByStudentNum();
 });

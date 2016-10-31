@@ -10,6 +10,8 @@ fs.readFile('tas.json', 'utf-8', function(err, data) {
 
 exports.getApplicants = function(req, res) {
     var statusOfApplicant = req.query.status;
+    var familyName = req.query.fname;
+    
     var resultObj = {};
     
     if(statusOfApplicant){
@@ -20,7 +22,17 @@ exports.getApplicants = function(req, res) {
             }
         }
         resultObj.tas = resultArr;
-    }else{
+    }
+//    else if(familyName){
+//        var resultArr = [];
+//        for(var i = 0; i < tasObj.tas.length; i++){
+//            if(tasObj.tas[i].familyname == familyName){
+//                resultArr.push(tasObj.tas[i]);
+//            }
+//        }
+//        resultObj.tas = resultArr;
+//    }
+    else{
         resultObj = tasObj;
     }
     
@@ -28,8 +40,21 @@ exports.getApplicants = function(req, res) {
 }
 
 //exports.getByFamilyName = function(req, res) {
-//    var familyName = req.query.fname;
-//    res.send(JSON.stringify(tasObj.tas[familyname]));
+////    var familyName = req.query.fname;
+////    var resultObj = {};
+////    
+////    if(familyName){
+////        var resultArr = [];
+////        for(var i = 0; i < tasObj.tas.length; i++){
+////            if(tasObj.tas[i].familyname == familyName){
+////                resultArr.push(tasObj.tas[i]);
+////            }
+////        }
+////        resultObj.tas = resultArr;
+////    }
+////    
+////    res.send(JSON.stringify(resultObj));
+//    console.log("sada");
 //}
 
 exports.addNewApplicant = function(req, res) {
@@ -40,6 +65,25 @@ exports.addNewApplicant = function(req, res) {
 
 exports.removeByFamilyName = function(req, res) {
     var familyName = req.query.fname;
+    var stunum = req.query.stunum;
+    
+    if(familyName){
+        for(var i = 0; i < tasObj.tas.length; i++){
+            if(tasObj.tas[i].familyname == familyName){
+                tasObj.tas.splice(i, 1);
+            }
+        }
+    }
+    
+    if(stunum){
+        for(var i = 0; i < tasObj.tas.length; i++){
+            if(tasObj.tas[i].stunum == stunum){
+                tasObj.tas.splice(i, 1);
+            }
+        }
+    }
+    
+    res.send("Success");
 }
 
 exports.removeByStudentNum = function(req, res) {
