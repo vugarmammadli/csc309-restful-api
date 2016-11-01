@@ -90,14 +90,62 @@ function removeApplicantByStudentNum(){
     });
 }
 
-function populateCourse(){
-    
+function addMoreCourse(){
+    let parent = $('#applicant_form');
+    var number = 2;
+    $("#add_course").click(function(e){
+        e.preventDefault();
+        let courseRow = $("<tr>").append(
+            $("<td>").text("Course: "),
+            $("<td>").append(
+                $('<select></select>').attr("id", "list_of_courses_" + number)
+            )
+        );
+        populateCourse("#list_of_courses_" + number);
+        let rankRow = $("<tr>").append(
+            $("<td>").text("Rank: "),
+            $("<td>").append(
+                $('<input>').attr({
+                    type: "text",
+                    id: "rank" + number})
+            )
+        );
+        let experienceRow = $("<tr>").append(
+            $("<td>").text("Experience: "),
+            $("<td>").append(
+                $('<input>').attr({
+                    type: "text",
+                    id: "experience" + number})
+            )
+        );
+        parent.find("tr:last").before(courseRow);
+        parent.find("tr:last").before(rankRow);
+        parent.find("tr:last").before(experienceRow);
+        number++;
+    });
 }
 
+function populateCourse(id){
+    $.ajax({
+        url: "/courses",
+        type: "GET",
+        dataType: 'json',
+        success: function(data){
+            for(let i = 0; i < data.courses.length; i++){
+                let course = data.courses[i].code;
+                $(id).append(
+                    $("<option></option>").attr("value", course).text(course)
+                ); 
+            }
+        }
+    });
+}
 
 $(document).ready(function() {
     getAllAplications();
     getApplicantByFamilyName();
     removeApplicantByFamilyName();
     removeApplicantByStudentNum();
+    populateCourse("#list_of_courses_1");
+    addMoreCourse();
 });
