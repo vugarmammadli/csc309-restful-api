@@ -30,6 +30,15 @@ table td{
     padding: 10px 15px;
 }
 
+input{
+    border: 1px solid #e8edff;
+    color: #039;
+}
+
+input:focus{
+    outline: none;
+}
+
 #applicants {
     width: 90%;
     margin-left: auto;
@@ -67,11 +76,14 @@ table td{
 #filter select{
     width: 30%;
     margin-left: 40px;
+}
+
+select{
     border: 1px solid #e8edff;
     cursor: pointer;
 }
 
-#filter select:focus{
+select:focus{
     outline: none;
 }
 
@@ -89,12 +101,6 @@ table td{
 #search input[name="familyname"]{
     width: 30%;
     margin-left: 40px;
-    border: 1px solid #e8edff;
-    color: #039;
-}
-
-input:focus{
-    outline: none;
 }
 
 input[type="submit"]{
@@ -135,8 +141,6 @@ input[type="submit"]:hover{
 #delete_fname input[name="familyname"]{
     width: 50%;
     margin-top: 10px;
-    border: 1px solid #e8edff;
-    color: #039;
 }
 
 #delete_stunum{
@@ -153,12 +157,19 @@ input[type="submit"]:hover{
 #delete_stunum input[name="stunum"]{
     width: 50%;
     margin-top: 10px;
-    border: 1px solid #e8edff;
-    color: #039;
 }
 
 #applicant_form{
     width: 40%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
+}
+
+#applicant_status{
+    width: 70%;
+}
+
+#list_of_courses{
+    width: 70%;
 }

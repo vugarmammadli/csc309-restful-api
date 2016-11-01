@@ -52,9 +52,8 @@ function sortByFamilyName(firstTa, secondTa){
 
 function getApplicantByFamilyName(){
 //    $('#search_button').click(function(){
-//        $.get('applicants?fname=' + $(this).val(), function (data) {
-//            console.log("sadas");
-//            console.log(data);
+//        $.get('applicants?fname=' + $("#search input[name=familyname]").val(), function (data) {
+//            
 //        });
 //    });
 }
@@ -63,14 +62,15 @@ function removeApplicantByFamilyName(){
     $("#rm_fname").click(function (e) {
         e.preventDefault();
         let familyName = $('#delete_fname input[type=text]').val();
-        $.ajax({
-            url: '/applicants/?fname=' + familyName,
-            type: 'DELETE',
-            success: function(result) {
-                location.reload(true);
-            }
-        });
-
+        if(familyName){
+            $.ajax({
+                url: '/applicants/?fname=' + familyName,
+                type: 'DELETE',
+                success: function(result) {
+                    location.reload(true);
+                }
+            });
+        }
     });
 }
 
@@ -78,16 +78,22 @@ function removeApplicantByStudentNum(){
     $("#rm_stunum").click(function (e) {
         e.preventDefault();
         let stdNum = $('#delete_stunum input[type=text]').val();
-        $.ajax({
-            url: '/applicants/?stunum=' + stdNum,
-            type: 'DELETE',
-            success: function(result) {
-                location.reload(true);
-            }
-        });
-
+        if(stdNum){
+            $.ajax({
+                url: '/applicants/?stunum=' + stdNum,
+                type: 'DELETE',
+                success: function(result) {
+                    location.reload(true);
+                }
+            });
+        }
     });
 }
+
+function populateCourse(){
+    
+}
+
 
 $(document).ready(function() {
     getAllAplications();

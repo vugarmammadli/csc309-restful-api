@@ -1,14 +1,22 @@
 var fs = require('fs');
 
 var tasObj;
+var coursesObj;
+var result;
 
 fs.readFile('tas.json', 'utf-8', function(err, data) {
     if(err) throw err;
     tasObj = JSON.parse(data);
 });
 
+fs.readFile('courses.json', 'utf-8', function(err, data) {
+    if(err) throw err;
+    coursesObj = JSON.parse(data);
+});
+
 
 exports.getApplicants = function(req, res) {
+    
     var statusOfApplicant = req.query.status;
     var familyName = req.query.fname;
     
@@ -23,18 +31,13 @@ exports.getApplicants = function(req, res) {
         }
         resultObj.tas = resultArr;
     }
-//    else if(familyName){
-//        var resultArr = [];
-//        for(var i = 0; i < tasObj.tas.length; i++){
-//            if(tasObj.tas[i].familyname == familyName){
-//                resultArr.push(tasObj.tas[i]);
-//            }
-//        }
-//        resultObj.tas = resultArr;
-//    }
     else{
         resultObj = tasObj;
     }
+    
+//    if(familyName){
+//        
+//    }
     
     res.send(JSON.stringify(resultObj));
 }
@@ -63,7 +66,7 @@ exports.addNewApplicant = function(req, res) {
     res.send("Success");
 }
 
-exports.removeByFamilyName = function(req, res) {
+exports.removeApplicant = function(req, res) {
     var familyName = req.query.fname;
     var stunum = req.query.stunum;
     
@@ -86,6 +89,15 @@ exports.removeByFamilyName = function(req, res) {
     res.send("Success");
 }
 
-exports.removeByStudentNum = function(req, res) {
-    var stunum = req.query.stunum;
+exports.getCourses = function(req, res) {
+    result = {};
+    result.courses = [];
+    var listOfCourses = coursesObj.courses;
+    for(var course in listOfCourses){
+        var eachCourse = {};
+        eachCourse.code = listOfCourses[course];
+        eachCourse.tas = [];
+        result.courses.push(eachCourse);
+    }
+    res.send(JSON.stringify(result));
 }

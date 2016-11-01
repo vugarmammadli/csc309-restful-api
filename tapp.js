@@ -32,9 +32,11 @@ app.get('/applicants', routes.getApplicants);
 
 app.post('/applicants', routes.addNewApplicant);
 
-app.delete('/applicants', routes.removeByFamilyName);
+app.delete('/applicants', routes.removeApplicant);
 
 //app.delete('/remove/:stunum', routes.removeByStudentNum);
+
+app.get('/courses', routes.getCourses);
 
 
 // start the server
