@@ -62,8 +62,46 @@ exports.getApplicants = function(req, res) {
 
 exports.addNewApplicant = function(req, res) {
     var newApplicant = req.body;
-    tasObj.tas.push(newApplicant);
-    res.send("Success");
+    var stunumExist = false;
+    
+    for(item in tasObj.tas){
+        if(tasObj.tas[item].stunum == newApplicant.stunum)
+            stunumExist = true;
+    }
+    
+    if(!stunumExist){
+        var result = {};
+        result.stunum = newApplicant.stunum;
+        result.givenname = newApplicant.givenname;
+        result.familyname = newApplicant.familyname;
+        result.status = newApplicant.status;
+        result.year = newApplicant.year;
+        result.courses = [];
+
+        var courseObject = {};
+        courseObject.code = newApplicant.code1;
+        courseObject.rank = newApplicant.rank1;
+        courseObject.experience = newApplicant.experience1;
+        result.courses.push(courseObject);
+
+        var keys = Object.keys(newApplicant);
+
+        if(keys.length > 8){
+            for(var i = 8; i < keys.length; i = i + 3){
+                courseObject = {};
+                courseObject.code = newApplicant[keys[i]];
+                courseObject.rank = newApplicant[keys[i+1]];
+                courseObject.experience = newApplicant[keys[i+2]];
+                result.courses.push(courseObject);
+            }
+        }
+
+        tasObj.tas.push(result);
+
+        res.send("Success");
+    }else{
+        res.send("Error: duplicate student number");
+    }
 }
 
 exports.removeApplicant = function(req, res) {

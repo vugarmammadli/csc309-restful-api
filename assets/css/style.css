@@ -173,3 +173,12 @@ input[type="submit"]:hover{
 #list_of_courses{
     width: 70%;
 }
+
+#applicant_form tr td span{
+    color: #039;
+    cursor: pointer;
+    margin-left: 30px;
+}
+#applicant_form tr td span:hover{
+    text-decoration: underline;
+}

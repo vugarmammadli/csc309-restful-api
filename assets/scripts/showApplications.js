@@ -98,7 +98,10 @@ function addMoreCourse(){
         let courseRow = $("<tr>").append(
             $("<td>").text("Course: "),
             $("<td>").append(
-                $('<select></select>').attr("id", "list_of_courses_" + number)
+                $('<select></select>').attr({
+                    id : "list_of_courses_" + number,
+                    name: "code" + number}),
+                $('<span />').addClass('course' + number).html("Remove class")
             )
         );
         populateCourse("#list_of_courses_" + number);
@@ -107,6 +110,7 @@ function addMoreCourse(){
             $("<td>").append(
                 $('<input>').attr({
                     type: "text",
+                    name: "rank" + number,
                     id: "rank" + number})
             )
         );
@@ -115,13 +119,24 @@ function addMoreCourse(){
             $("<td>").append(
                 $('<input>').attr({
                     type: "text",
+                    name: "experience" + number,
                     id: "experience" + number})
             )
         );
+        courseRow.addClass("course" + number);
+        rankRow.addClass("course" + number);
+        experienceRow.addClass("course" + number);
         parent.find("tr:last").before(courseRow);
         parent.find("tr:last").before(rankRow);
         parent.find("tr:last").before(experienceRow);
         number++;
+    });
+}
+
+function removeCourse(){
+    $('#applicant_form').on('click', 'span', function(){
+        var className = $(this).attr('class');
+        $('.' + className).remove();
     });
 }
 
@@ -141,6 +156,18 @@ function populateCourse(id){
     });
 }
 
+function addApplicant(){
+    $("#add").submit(function (e) {
+        e.preventDefault();
+        $.post('/applicants', $('form').serialize(), function(data){
+            if(data == "Success")
+                location.reload(true);
+            else
+                alert(data);
+        });
+    });
+}
+
 $(document).ready(function() {
     getAllAplications();
     getApplicantByFamilyName();
@@ -148,4 +175,6 @@ $(document).ready(function() {
     removeApplicantByStudentNum();
     populateCourse("#list_of_courses_1");
     addMoreCourse();
+    removeCourse();
+    addApplicant();
 });
