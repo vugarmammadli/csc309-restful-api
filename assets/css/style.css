@@ -188,3 +188,19 @@ input[type="submit"]:hover{
     text-decoration: underline;
     color: #007e99;
 }
+
+#search_course{
+    width: 30%;
+    text-align: center;
+    font-size: 14px;
+    color: #039;
+    border: 1px solid #c0ceff;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+#search_course input{
+    margin-top: 10px;
+}

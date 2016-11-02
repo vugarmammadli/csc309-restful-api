@@ -135,14 +135,16 @@ exports.removeApplicant = function(req, res) {
 }
 
 exports.getCourses = function(req, res) {
+    var courseName = req.query.course;
     result = {};
     result.courses = [];
     var listOfCourses = coursesObj.courses;
+    
     for(var course in listOfCourses){
         var eachCourse = {};
         eachCourse.code = listOfCourses[course];
         eachCourse.tas = [];
-        
+
         for(var i = 0; i < tasObj.tas.length; i++){
             for(var j = 0; j < tasObj.tas[i].courses.length; j++){
                 if(tasObj.tas[i].courses[j].code == eachCourse.code){
@@ -159,8 +161,14 @@ exports.getCourses = function(req, res) {
             }
         }
         
-        
-        result.courses.push(eachCourse);
+        if(courseName){
+            if(eachCourse.code == courseName){
+                result.courses.push(eachCourse);
+            }
+        } else {
+            result.courses.push(eachCourse);
+        }
     }
+    
     res.send(JSON.stringify(result));
 }
