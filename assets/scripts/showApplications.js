@@ -64,7 +64,7 @@ function removeApplicantByFamilyName(){
         let familyName = $('#delete_fname input[type=text]').val();
         if(familyName){
             $.ajax({
-                url: '/applicants/?fname=' + familyName,
+                url: '/applicant/?fname=' + familyName,
                 type: 'DELETE',
                 success: function(result) {
                     if(result == "Success")
@@ -83,7 +83,7 @@ function removeApplicantByStudentNum(){
         let stdNum = $('#delete_stunum input[type=text]').val();
         if(stdNum){
             $.ajax({
-                url: '/applicants/?stunum=' + stdNum,
+                url: '/applicant/?stunum=' + stdNum,
                 type: 'DELETE',
                 success: function(result) {
                     if(result == "Success")
@@ -165,7 +165,7 @@ function populateCourse(id){
 function addApplicant(){
     $("#add").submit(function (e) {
         e.preventDefault();
-        $.post('/applicants', $('form').serialize(), function(data){
+        $.post('/applicant', $('form').serialize(), function(data){
             if(data == "Success")
                 location.reload(true);
             else

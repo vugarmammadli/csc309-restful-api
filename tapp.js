@@ -30,9 +30,9 @@ app.get('/applicants', routes.getApplicants);
 
 //app.get('/applicants?fname=:fname', routes.getByFamilyName);
 
-app.post('/applicants', routes.addNewApplicant);
+app.post('/applicant', routes.addNewApplicant);
 
-app.delete('/applicants', routes.removeApplicant);
+app.delete('/applicant', routes.removeApplicant);
 
 //app.delete('/remove/:stunum', routes.removeByStudentNum);
 

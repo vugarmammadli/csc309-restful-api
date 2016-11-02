@@ -142,6 +142,24 @@ exports.getCourses = function(req, res) {
         var eachCourse = {};
         eachCourse.code = listOfCourses[course];
         eachCourse.tas = [];
+        
+        for(var i = 0; i < tasObj.tas.length; i++){
+            for(var j = 0; j < tasObj.tas[i].courses.length; j++){
+                if(tasObj.tas[i].courses[j].code == eachCourse.code){
+                    var taObj = {};
+                    taObj.stunum = tasObj.tas[i].stunum;
+                    taObj.givenname = tasObj.tas[i].givenname;
+                    taObj.familyname = tasObj.tas[i].familyname;
+                    taObj.status = tasObj.tas[i].status;
+                    taObj.year = tasObj.tas[i].year;
+                    taObj.ranking = tasObj.tas[i].courses[j].rank;
+                    taObj.experience = tasObj.tas[i].courses[j].experience;
+                    eachCourse.tas.push(taObj);
+                }
+            }
+        }
+        
+        
         result.courses.push(eachCourse);
     }
     res.send(JSON.stringify(result));
