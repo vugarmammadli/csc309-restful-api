@@ -107,11 +107,15 @@ exports.addNewApplicant = function(req, res) {
 exports.removeApplicant = function(req, res) {
     var familyName = req.query.fname;
     var stunum = req.query.stunum;
+    var result;
     
     if(familyName){
         for(var i = 0; i < tasObj.tas.length; i++){
             if(tasObj.tas[i].familyname == familyName){
                 tasObj.tas.splice(i, 1);
+                result = "Success";
+            } else {
+                result = "Error: no such student";
             }
         }
     }
@@ -120,11 +124,14 @@ exports.removeApplicant = function(req, res) {
         for(var i = 0; i < tasObj.tas.length; i++){
             if(tasObj.tas[i].stunum == stunum){
                 tasObj.tas.splice(i, 1);
+                result = "Success";
+            } else {
+                result = "Error: no such student";
             }
         }
     }
     
-    res.send("Success");
+    res.send(result);
 }
 
 exports.getCourses = function(req, res) {

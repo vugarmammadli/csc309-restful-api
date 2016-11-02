@@ -67,7 +67,10 @@ function removeApplicantByFamilyName(){
                 url: '/applicants/?fname=' + familyName,
                 type: 'DELETE',
                 success: function(result) {
-                    location.reload(true);
+                    if(result == "Success")
+                        location.reload(true);
+                    else
+                        alert(result);
                 }
             });
         }
@@ -83,7 +86,10 @@ function removeApplicantByStudentNum(){
                 url: '/applicants/?stunum=' + stdNum,
                 type: 'DELETE',
                 success: function(result) {
-                    location.reload(true);
+                    if(result == "Success")
+                        location.reload(true);
+                    else
+                        alert(result);
                 }
             });
         }
