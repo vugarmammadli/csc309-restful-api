@@ -51,11 +51,11 @@ function sortByFamilyName(firstTa, secondTa){
 }
 
 function getApplicantByFamilyName(){
-//    $('#search_button').click(function(){
-//        $.get('applicants?fname=' + $("#search input[name=familyname]").val(), function (data) {
-//            
-//        });
-//    });
+    $('#search_button').click(function(){
+        $.get('applicants?fname=' + $("#search input[name=familyname]").val(), function (data) {
+            window.location.href = 'applicants?fname=' + $("#search input[name=familyname]").val();
+        });
+    });
 }
 
 function removeApplicantByFamilyName(){

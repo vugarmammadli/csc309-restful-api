@@ -26,39 +26,38 @@ exports.getApplicants = function(req, res) {
         var resultArr = [];
         for(var i = 0; i < tasObj.tas.length; i++){
             if(tasObj.tas[i].status == statusOfApplicant){
-                resultArr.push(tasObj.tas[i]);
+                var ta = createTaObject(tasObj.tas[i]);
+                resultArr.push(ta);
             }
         }
         resultObj.tas = resultArr;
+    } else if(familyName){
+        for(var i = 0; i < tasObj.tas.length; i++){
+            if(tasObj.tas[i].familyname == familyName){
+                resultObj = tasObj.tas[i];
+            }
+        }
+    } else{
+        var resultArr = [];
+        for(var i = 0; i < tasObj.tas.length; i++){
+            var ta = createTaObject(tasObj.tas[i]);
+            resultArr.push(ta);
+        }
+        resultObj.tas = resultArr;
     }
-    else{
-        resultObj = tasObj;
-    }
-    
-//    if(familyName){
-//        
-//    }
     
     res.send(JSON.stringify(resultObj));
 }
 
-//exports.getByFamilyName = function(req, res) {
-////    var familyName = req.query.fname;
-////    var resultObj = {};
-////    
-////    if(familyName){
-////        var resultArr = [];
-////        for(var i = 0; i < tasObj.tas.length; i++){
-////            if(tasObj.tas[i].familyname == familyName){
-////                resultArr.push(tasObj.tas[i]);
-////            }
-////        }
-////        resultObj.tas = resultArr;
-////    }
-////    
-////    res.send(JSON.stringify(resultObj));
-//    console.log("sada");
-//}
+function createTaObject(ta){
+    var taObj = {};
+    taObj.stunum = ta.stunum;
+    taObj.givenname = ta.givenname;
+    taObj.familyname = ta.familyname;
+    taObj.status = ta.status;
+    taObj.year = ta.year;
+    return taObj;
+}
 
 exports.addNewApplicant = function(req, res) {
     var newApplicant = req.body;
