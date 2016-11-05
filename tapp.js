@@ -25,16 +25,10 @@ app.get('/', function(req, res) {
 });
 
 app.get('/applicants', routes.getApplicants);
-    
-//app.get('/applicants/:status', routes.getByStatus);
-
-//app.get('/applicants?fname=:fname', routes.getByFamilyName);
 
 app.post('/applicants', routes.addNewApplicant);
 
 app.delete('/applicants', routes.removeApplicant);
-
-//app.delete('/remove/:stunum', routes.removeByStudentNum);
 
 app.get('/courses', routes.getCourses);
 

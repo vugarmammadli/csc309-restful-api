@@ -1,128 +1,139 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    
-	<script src="assets/scripts/showApplications.js"></script>
+
+    <script src="assets/scripts/showApplications.js"></script>
     <title>TA's Application List</title>
 </head>
 
 <body>
 
-<div id="container">
-    <div id="filter">
-        Choose specific status to filter applicants: 
-        <select>
-            <option value="all">All</option>
-            <option value="Undergrad">Undergrad</option>
-            <option value="MSc">MSc</option>
-            <option value="PhD">PhD</option>
-            <option value="MScAC">MScAC</option>
-            <option value="MEng">MEng</option>
-        </select>
-    </div>
-    
-    <div id="delete_fname">
-        Remove applicant by family name:
-        <br />
-        <input type="text" name="familyname">
-        <br />
-        <input id="rm_fname" type="submit" value="Remove">
-    </div>
-    
-     <div id="delete_stunum">
-        Remove applicant by student number: 
-        <input type="text" name="stunum">
-        <br />
-        <input id="rm_stunum" type="submit" value="Remove">
+    <div id="header">
     </div>
 
-    <table id="applicants">
-        <thead>
-            <tr>
-                <th>Student #</th>
-                <th>Given name:</th>
-                <th>Family name:</th>
-                <th>Status:</th>
-                <th>Year:</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5"><input type="submit" id="add_applicant" value="Add new applicant"></td>
-            </tr>
-        </tfoot>
-    </table>
-    
-    <form id="add" method="post">
-       <table id="applicant_form">
-            <tr>
-                <td>Student Number: </td>
-                <td><input type="text" name="stunum" id="student_number"></td>
-            </tr>
-            <tr>
-                <td>Given name: </td>
-                <td><input type="text" name="givenname" id="given_name"></td>
-            </tr>
-            <tr>
-                <td>Family name: </td>
-                <td><input type="text" name="familyname" id="family_name"></td>
-            </tr>
-            <tr>
-                <td>Status: </td>
-                <td>
-                    <select name="status" id="applicant_status">
-                        <option value="Undergrad">Undergrad</option>
-                        <option value="MSc">MSc</option>
-                        <option value="PhD">PhD</option>
-                        <option value="MScAC">MScAC</option>
-                        <option value="MEng">MEng</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Year: </td>
-                <td><input type="text" name="year" id="year"></td>
-            </tr>
-            <tr class="course1">
-                <td>Course: </td>
-                <td>
-                    <select name="code1" id="list_of_courses_1">
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Rank: </td>
-                <td><input type="text" name="rank1" id="rank1"></td>
-            </tr>
-            <tr>
-                <td>Experience: </td>
-                <td><input type="text" name="experience1" id="experience1"></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" id="add_course" value="Add more courses">
-                </td>
-                <td align="right">
-                    <input type="submit" value="Add">
-                </td>
-            </tr>
+    <div id="container">
+        <div id="filter">
+            Choose specific status to filter applicants:
+            <select>
+                <option value="all">All</option>
+                <option value="Undergrad">Undergrad</option>
+                <option value="MSc">MSc</option>
+                <option value="PhD">PhD</option>
+                <option value="MScAC">MScAC</option>
+                <option value="MEng">MEng</option>
+            </select>
+        </div>
+
+        <div id="delete_fname">
+            Remove applicant by family name:
+            <br />
+            <input type="text" name="familyname">
+            <br />
+            <input id="rm_fname" type="submit" value="Remove">
+        </div>
+
+        <div id="delete_stunum">
+            Remove applicant by student number:
+            <input type="text" name="stunum">
+            <br />
+            <input id="rm_stunum" type="submit" value="Remove">
+        </div>
+
+        <table id="applicants">
+            <thead>
+                <tr>
+                    <th>Student #</th>
+                    <th>Given name:</th>
+                    <th>Family name:</th>
+                    <th>Status:</th>
+                    <th>Year:</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <input type="submit" id="add_applicant" value="Add new applicant">
+                    </td>
+                </tr>
+            </tfoot>
         </table>
-    </form>
-    
-    <div id="search">
-        Get the information about an applicant with a particular family name: 
-        <input type="text" name="familyname">
-        <br />
-        <input type="submit" id="search_button" value="Search">
-        <input type="submit" id="clear_button" value="Clear result">
+
+        <form id="add" method="post">
+            <table id="applicant_form" style="display: none">
+                <tr>
+                    <td>Student Number: </td>
+                    <td>
+                        <input type="text" name="stunum" pattern="\d*" required id="student_number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Given name: </td>
+                    <td>
+                        <input type="text" name="givenname" required id="given_name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Family name: </td>
+                    <td>
+                        <input type="text" name="familyname" required id="family_name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Status: </td>
+                    <td>
+                        <select name="status" id="applicant_status">
+                            <option value="Undergrad">Undergrad</option>
+                            <option value="MSc">MSc</option>
+                            <option value="PhD">PhD</option>
+                            <option value="MScAC">MScAC</option>
+                            <option value="MEng">MEng</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Year: </td>
+                    <td>
+                        <input type="text" required name="year" id="year">
+                    </td>
+                </tr>
+                <tr class="course1">
+                    <td>Course: </td>
+                    <td>
+                        <select name="code1" id="list_of_courses_1">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rank: </td>
+                    <td>
+                        <input type="text" required pattern="\d*" name="rank1" id="rank1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Experience: </td>
+                    <td>
+                        <input type="text" required pattern="\d*" name="experience1" id="experience1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" id="add_course" value="Add more courses">
+                    </td>
+                    <td align="right">
+                        <input type="submit" value="Add">
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
-</div>
 
 </body>
+
 </html>
