@@ -1,0 +1,7 @@
+I assume that when you add new applicant, there should be at least one course with ranking and experience.
+
+I assume that family name is also unique.
+
+You can access GET /applicants?fname=fname by clicking the row of the student on the table.
+
+Thanks.
